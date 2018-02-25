@@ -21,7 +21,7 @@ const app = express();
 //This connects the controller (server.js) to the model (kilovolt DB).
 const conString = 'postgres://localhost:5432/kilovolt';
 
-//This sets the connection between the controller and model. 
+//This sets the connection between the controller and model.
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', error => {
@@ -41,7 +41,7 @@ app.get('/new', (request, response) => {
 app.get('/articles', (request, response) => {
 
   //This query, within the get method joins the two kilovolt tables within the model for data responses to the controller to deliver to the view, when requested. This is part of the CREATE in CRUD
-  client.query(`SELECT * FROM articles INNER JOIN authors ON articles.author_id = authors.authors_id;`)
+  client.query(`SELECT * FROM articles INNER JOIN authors ON articles.author_id = authors.author_id;`)
     .then(result => {
       response.send(result.rows);
     })
@@ -109,12 +109,12 @@ app.put('/articles/:id', function(request, response) {
   //As part of the UPDATE part of CRUD, this query updates the author table with new author information.
   client.query(
     `UPDATE authors 
-    SET author=$2, authorUrl=$3
-    WHERE articles_id=$1;`,
+    SET author=$1, "authorUrl"=$2
+    WHERE author_id=$3;`,
     [
-      request.body.author_id,
       request.body.author,
-      request.body.authorUrl
+      request.body.authorUrl,
+      request.body.author_id
     ]
   )
     .then(() => {
@@ -133,7 +133,7 @@ app.put('/articles/:id', function(request, response) {
       ]
     })
     .then(() => {
-      
+
       //This sends a message to controller that the updating task is complete.
       response.send('Update complete');
     })
@@ -175,7 +175,6 @@ app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}!`);
 });
 
-
 //////// ** DATABASE LOADERS ** ////////
 ////////////////////////////////////////
 
@@ -184,7 +183,7 @@ function loadAuthors() {
   fs.readFile('./public/data/hackerIpsum.json', 'utf8', (err, fd) => {
     JSON.parse(fd).forEach(ele => {
       client.query(
-        'INSERT INTO authors(author, "authorUrl") VALUES($1, $2) ON CONFLICT DO NOTHING',
+        'INSERT INTO authors(author, "authorUrl") VALUES($1, $2) ON CONFLICT DO NOTHING;',
         [ele.author, ele.authorUrl]
       )
     })
@@ -193,7 +192,7 @@ function loadAuthors() {
 
 // REVIEW: This helper function will load articles into the DB if the DB is empty.
 function loadArticles() {
-  client.query('SELECT COUNT(*) FROM articles')
+  client.query('SELECT COUNT(*) FROM articles;')
     .then(result => {
       if(!parseInt(result.rows[0].count)) {
         fs.readFile('./public/data/hackerIpsum.json', 'utf8', (err, fd) => {

@@ -1,7 +1,7 @@
 # Kilovolt Blog Lab 9
 
 **Author**: Jeremy Crawford and Suzanne Richman
-**Version**: 1.0.5 (1.0.05 completed by Suzanne Richman alone)
+**Version**: 1.0.5 (1.0.5 onwards completed by Suzanne Richman alone)
 
 ## Overview
 This product is designed to give users a consistent reading and navigation experience across mobile and desktop devices, with content ordered by most recent first and sortable by both author or category. Additionally, users who want to add articles to the blog with the submit button may now do so and the model database will be updated with their new article that they'll then be able to see on the home page with a page refresh. The articles are now stored and available via a database on a model instead of just from local storage. There is also now a full system architecture in place to support a more flexible and efficient application with a view (the two HTML pages), a controller (server.js) and a model (kilovold DB).
@@ -51,6 +51,7 @@ We used IcoMoon icon font for navigation icons. We included the jQuery, Handleba
 02-24-2018
 1:15pm Commited new package-lock.json and new branch for doing my own resubmit based on my own fork.
 3:30pm Commited updates to the server.js based on work to-date from Friday's pair partner programming and then my own notes from code review in class, as well as updates to my readme.
+5:13pm Updates to server.js with CRUD testing has .put method working now, but while backend continues to improve, front end still isn't working. 
 
 
 ## Credits and Collaborations
@@ -61,4 +62,6 @@ We used IcoMoon icon font for navigation icons. We included the jQuery, Handleba
 * We referenced our text book: Jon Duckett - JavaScript and JQuery.
 * We used Node documentation: https://nodejs.org/en/
 * We referenced the SQL Language cheat sheet througout our work that was provided by our instructor, as well as the SQL query demo she shared from the day before. 
+* For help remembering COUNT command structure in SQL: https://www.brentozar.com/archive/2014/02/count-number-rows-table-sql-server/
+* Special thanks to Beverly for helping me trouble shoot my .put function in my controler and catching missing quotes around authorUrl. 
     
