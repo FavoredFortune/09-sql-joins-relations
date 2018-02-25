@@ -123,14 +123,15 @@ app.put('/articles/:id', function(request, response) {
       client.query(
         `UPDATE articles 
         SET title=$1, category=$2, "publishedOn"=$3, body=$4 
-        WHERE article_id=$5;`),
-      [
-        request.body.title,
-        request.body.category,
-        request.body.publishedOn,
-        request.body.body,
-        request.params.id
-      ]
+        WHERE articles.article_id=$5;`,
+        [
+          request.body.title,
+          request.body.category,
+          request.body.publishedOn,
+          request.body.body,
+          request.params.id
+        ]
+      )
     })
     .then(() => {
 

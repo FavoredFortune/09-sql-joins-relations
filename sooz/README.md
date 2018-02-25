@@ -52,6 +52,7 @@ We used IcoMoon icon font for navigation icons. We included the jQuery, Handleba
 1:15pm Commited new package-lock.json and new branch for doing my own resubmit based on my own fork.
 3:30pm Commited updates to the server.js based on work to-date from Friday's pair partner programming and then my own notes from code review in class, as well as updates to my readme.
 5:13pm Updates to server.js with CRUD testing has .put method working now, but while backend continues to improve, front end still isn't working. 
+7 pm Finally got updates to server.js to pass all CRUD testing. Also fixed tab indents in article.js and updated readme. 
 
 
 ## Credits and Collaborations

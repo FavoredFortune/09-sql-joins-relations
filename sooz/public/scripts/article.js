@@ -19,9 +19,8 @@ Article.prototype.toHtml = function() {
 };
 
 Article.loadAll = articleData => {
-  articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)))
-
-  articleData.forEach(articleObject => Article.all.push(new Article(articleObject)))
+  articleData.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
+  articleData.forEach(articleObject => Article.all.push(new Article(articleObject)));
 };
 
 Article.fetchAll = callback => {
